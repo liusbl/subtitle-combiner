@@ -1,4 +1,13 @@
+
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonBuilder
 import java.io.File
+
+val json = Json { prettyPrint = true}
 
 fun main() {
     combineMatching(
@@ -31,7 +40,9 @@ private fun combineMatching(
     val subtitlesFirst = parseSubtitles(linesFirst, firstFileOrigin)
     val subtitlesSecond = parseSubtitles(linesSecond, secondFileOrigin)
 
-    val newSubtitleText = subtitlesFirst.combineMatching(subtitlesSecond).toPrintableText()
+    val matchingSubtitles = subtitlesFirst.combineMatching(subtitlesSecond)
+    println(json.encodeToString(matchingSubtitles))
+    val newSubtitleText = matchingSubtitles.toPrintableText()
 
     println(newSubtitleText)
 
@@ -72,14 +83,13 @@ fun List<Subtitle>.combineNonMatching(list: List<Subtitle>): List<Subtitle> {
     val firstList = this
     val firstReversed = firstList.reversed()
     val secondList = list.toMutableList()
-    val workaroundForFirstDuration =
-        if (secondList[0].duration.startTimeMillis < firstList[0].duration.startTimeMillis) {
-            val subtitle = secondList[0]
-            secondList.remove(subtitle)
-            listOf(subtitle)
-        } else {
-            emptyList()
-        }
+    val workaroundForFirstDuration = if (secondList[0].duration.startTimeMillis < firstList[0].duration.startTimeMillis) {
+        val subtitle = secondList[0]
+        secondList.remove(subtitle)
+        listOf(subtitle)
+    } else {
+        emptyList()
+    }
     return workaroundForFirstDuration + firstList.flatMap { firstSubtitle ->
         val secondSubtitle = secondList.find { secondSubtitle ->
             secondSubtitle.duration.startTimeMillis >= firstSubtitle.duration.startTimeMillis &&
@@ -137,13 +147,14 @@ fun List<List<String>>.addValue(value: String): List<List<String>> {
     return this.dropLast(1) + listOf(appendedLastList)
 }
 
+@Serializable
 data class Subtitle(
-    val origin: String,
-    val number: String,
-    val duration: Duration,
-    val text: String
+    @SerialName("origin") val origin: String,
+    @SerialName("number") val number: String,
+    @SerialName("duration") val duration: Duration,
+    @SerialName("text") val text: String
 ) {
-    val originText: String = if (origin.isNotBlank()) "[${origin}] " else ""
+    @Transient val originText: String = if (origin.isNotBlank()) "[${origin}] " else ""
 }
 
 fun List<Subtitle>.toPrintableText(): String =
@@ -154,18 +165,19 @@ fun Subtitle.toDisplayString(): String =
             "${duration.text}\n" +
             "$originText$text"
 
+@Serializable
 data class Duration(
-    val text: String,
-    val startTime: String,
-    val endTime: String
+    @SerialName("text") val text: String,
+    @SerialName("startTime") val startTime: String,
+    @SerialName("endTime") val endTime: String
 ) {
-    val startTimeMillis: Long
+    @Transient val startTimeMillis: Long
         get() {
             val (other, millis) = startTime.split(",")
             val (hours, minutes, seconds) = other.split(":").map { it.toLong() }
             return (hours * 3600 + minutes * 60 + seconds) * 1000 + millis.toLong()
         }
-    val endTimeMillis: Long
+    @Transient val endTimeMillis: Long
         get() {
             val (other, millis) = endTime.split(",")
             val (hours, minutes, seconds) = other.split(":").map { it.toLong() }
