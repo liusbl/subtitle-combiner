@@ -124,13 +124,13 @@ fun parseSubtitles(lines: List<String>, origin: String): List<Subtitle> {
     return chunks.mapIndexed { index, chunk ->
         val durationText = chunk.first()
         Subtitle(
-            origin = origin,
             number = "${index + 1}",
             duration = Duration(
                 text = durationText,
                 startTime = durationText.split("-->")[0].trim(),
                 endTime = durationText.split("-->")[1].trim()
             ),
+            origin = origin,
             text = chunk.drop(1).joinToString("\n")
         )
     }

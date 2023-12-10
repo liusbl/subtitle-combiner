@@ -3,9 +3,9 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Subtitle(
-    @SerialName("origin") val origin: String,
     @SerialName("number") val number: String,
     @SerialName("duration") val duration: Duration,
+    @SerialName("origin") val origin: String,
     @SerialName("text") val text: String
 ) {
     @Transient
