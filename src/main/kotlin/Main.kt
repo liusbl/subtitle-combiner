@@ -70,7 +70,7 @@ fun List<Subtitle>.combineMatching(list: List<Subtitle>): List<Subtitle> {
     return firstList.map { subtitle ->
         val secondSubtitle = secondList.find { it.duration == subtitle.duration }
             ?: error("No matching subtitle found. Investigate. Subtitle: $subtitle")
-        subtitle.copy(text = "${subtitle.text}\n${secondSubtitle.originText}${secondSubtitle.text}")
+        subtitle.copy(textList = subtitle.textList + secondSubtitle.textList)
     }
 }
 
@@ -130,8 +130,12 @@ fun parseSubtitles(lines: List<String>, origin: String): List<Subtitle> {
                 startTime = durationText.split("-->")[0].trim(),
                 endTime = durationText.split("-->")[1].trim()
             ),
-            origin = origin,
-            text = chunk.drop(1).joinToString("\n")
+            textList = listOf(
+                SubtitleText(
+                    origin = origin,
+                    text = chunk.drop(1).joinToString("\n")
+                )
+            )
         )
     }
 }
