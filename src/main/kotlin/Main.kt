@@ -1,67 +1,25 @@
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import java.io.File
 
 val json = Json { prettyPrint = true }
 
 fun main() {
-    combineMatching(
-        firstFilePath = "src/main/kotlin/s01e02-romaji.srt",
-        firstFileOrigin = "RMJ",
-        secondFilePath = "src/main/kotlin/s01e02-bad-en.srt",
-        secondFileOrigin = "BAD-EN",
-        resultFilePath = "src/main/kotlin/s01e02-bad-en-and-romaji.srt"
-    )
+    val episode = "s01e02"
+    val subtitlesRomaji = parseSubtitles(fileName = "$episode-romaji.srt", origin = "RMJ")
+    val subtitlesBadEn = parseSubtitles(fileName = "$episode-bad-en.srt", origin = "BAD-EN")
+    val subtitlesRomajiBadEn = subtitlesRomaji.combineMatching(subtitlesBadEn)
+    subtitlesRomajiBadEn.printToFile("$episode-romaji-bad-en.srt")
 
-//    combineNonMatching(
-//        firstFilePath = "src/main/kotlin/s01e02-bad-en-and-romaji.srt",
-//        firstFileOrigin = "",
-//        secondFilePath = "src/main/kotlin/s01e02-og-en.srt",
-//        secondFileOrigin = "EN",
-//        resultFilePath = "src/main/kotlin/s01e02-bad-en-and-romaji-and-og-en.srt"
-//    )
-}
+    val subtitlesJp = parseSubtitles(fileName = "$episode-jp.srt", origin = "JP")
+    val subtitlesRomajiBadEnJp = subtitlesRomajiBadEn.combineMatching(subtitlesJp)
+    subtitlesRomajiBadEnJp.printToFile("$episode-romaji-bad-en-jp.srt")
 
-private fun combineMatching(
-    firstFilePath: String,
-    firstFileOrigin: String,
-    secondFilePath: String,
-    secondFileOrigin: String,
-    resultFilePath: String
-) {
-    val linesFirst = File(firstFilePath).readLines()
-    val linesSecond = File(secondFilePath).readLines()
+    val subtitlesOgEn = parseSubtitles(fileName = "$episode-og-en.srt", origin = "OG-EN")
 
-    val subtitlesFirst = parseSubtitles(linesFirst, firstFileOrigin)
-    val subtitlesSecond = parseSubtitles(linesSecond, secondFileOrigin)
+    val subtitlesRomajiBadEnOgEn = subtitlesRomajiBadEn.combineNonMatching(subtitlesOgEn)
+    subtitlesRomajiBadEnOgEn.printToFile("$episode-romaji-bad-en-og-en.srt")
 
-    val matchingSubtitles = subtitlesFirst.combineMatching(subtitlesSecond)
-    println(json.encodeToString(matchingSubtitles))
-    val newSubtitleText = matchingSubtitles.toPrintableText()
-
-    println(newSubtitleText)
-
-    File(resultFilePath).writeText(newSubtitleText)
-}
-
-private fun combineNonMatching(
-    firstFilePath: String,
-    firstFileOrigin: String,
-    secondFilePath: String,
-    secondFileOrigin: String,
-    resultFilePath: String
-) {
-    val linesFirst = File(firstFilePath).readLines()
-    val linesSecond = File(secondFilePath).readLines()
-
-    val subtitlesFirst = parseSubtitles(linesFirst, firstFileOrigin)
-    val subtitlesSecond = parseSubtitles(linesSecond, secondFileOrigin)
-
-    val newSubtitleText = subtitlesFirst.combineNonMatching(subtitlesSecond).toPrintableText()
-
-    println(newSubtitleText)
-
-    File(resultFilePath).writeText(newSubtitleText)
+    val subtitlesRomajiBadEnJpOgEn = subtitlesRomajiBadEnJp.combineNonMatching(subtitlesOgEn)
+    subtitlesRomajiBadEnJpOgEn.printToFile("$episode-romaji-bad-en-jp-og-en.srt")
 }
 
 fun List<Subtitle>.combineMatching(list: List<Subtitle>): List<Subtitle> {
@@ -74,76 +32,5 @@ fun List<Subtitle>.combineMatching(list: List<Subtitle>): List<Subtitle> {
     }
 }
 
-fun List<Subtitle>.combineNonMatching(list: List<Subtitle>): List<Subtitle> {
-    val firstList = this
-    val firstReversed = firstList.reversed()
-    val secondList = list.toMutableList()
-    val workaroundForFirstDuration =
-        if (secondList[0].duration.startTimeMillis < firstList[0].duration.startTimeMillis) {
-            val subtitle = secondList[0]
-            secondList.remove(subtitle)
-            listOf(subtitle)
-        } else {
-            emptyList()
-        }
-    return workaroundForFirstDuration + firstList.flatMap { firstSubtitle ->
-        val secondSubtitle = secondList.find { secondSubtitle ->
-            secondSubtitle.duration.startTimeMillis >= firstSubtitle.duration.startTimeMillis &&
-                    // Covers case where the next subtitle is not closest in time
-                    firstReversed.find { secondSubtitle.duration.startTimeMillis >= it.duration.startTimeMillis } == firstSubtitle
-        }
-
-        if (secondSubtitle == null && secondList.isNotEmpty()) {
-            listOf(firstSubtitle)
-        } else {
-            secondSubtitle?.let(secondList::remove)
-            buildList {
-                add(firstSubtitle)
-                secondSubtitle?.let { add(it) }
-            }
-        }
-    } + secondList // Add what's left in second after first list runs out
-}
-
-fun parseSubtitles(lines: List<String>, origin: String): List<Subtitle> {
-    val chunks = lines.drop(1)
-        .foldIndexed(listOf(listOf<String>())) { index, acc, next ->
-            if (next.contains("-->")) {
-                if (index == 1) {
-                    acc.addEmpty()
-                        .addValue(next)
-                } else {
-                    (acc.dropLast(1) + listOf(acc.last().dropLast(2)))
-                        .addEmpty()
-                        .addValue(next)
-                }
-            } else {
-                acc.addValue(next)
-            }
-        }.drop(1)
-    return chunks.mapIndexed { index, chunk ->
-        val durationText = chunk.first()
-        Subtitle(
-            number = "${index + 1}",
-            duration = Duration(
-                text = durationText,
-                startTime = durationText.split("-->")[0].trim(),
-                endTime = durationText.split("-->")[1].trim()
-            ),
-            textList = listOf(
-                SubtitleText(
-                    origin = origin,
-                    text = chunk.drop(1).joinToString("\n")
-                )
-            )
-        )
-    }
-}
-
-fun List<List<String>>.addEmpty(): List<List<String>> = this + listOf(emptyList())
-
-fun List<List<String>>.addValue(value: String): List<List<String>> {
-    val lastList = this.last()
-    val appendedLastList = lastList + listOf(value)
-    return this.dropLast(1) + listOf(appendedLastList)
-}
+fun List<Subtitle>.combineNonMatching(list: List<Subtitle>): List<Subtitle> =
+    (this + list).sortedBy { it.duration.startTimeMillis }
