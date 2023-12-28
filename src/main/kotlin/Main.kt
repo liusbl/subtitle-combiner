@@ -3,7 +3,7 @@ import kotlinx.serialization.json.Json
 val json = Json { prettyPrint = true }
 
 fun main() {
-    val episode = "s01e02"
+    val episode = "s01e04"
     val subtitlesRomaji = parseSubtitles(fileName = "$episode-romaji.srt", origin = "RMJ")
     val subtitlesBadEn = parseSubtitles(fileName = "$episode-bad-en.srt", origin = "BAD-EN")
     val subtitlesRomajiBadEn = subtitlesRomaji.combineMatching(subtitlesBadEn)
@@ -14,6 +14,9 @@ fun main() {
     subtitlesRomajiBadEnJp.printToFile("$episode-romaji-bad-en-jp.srt")
 
     val subtitlesOgEn = parseSubtitles(fileName = "$episode-og-en.srt", origin = "OG-EN")
+
+    val subtitlesRomajiOgEn = subtitlesRomaji.combineNonMatching(subtitlesOgEn)
+    subtitlesRomajiOgEn.printToFile("$episode-romaji-og-en.srt")
 
     val subtitlesRomajiBadEnOgEn = subtitlesRomajiBadEn.combineNonMatching(subtitlesOgEn)
     subtitlesRomajiBadEnOgEn.printToFile("$episode-romaji-bad-en-og-en.srt")
