@@ -1,9 +1,13 @@
+package subtitles
+
 import kotlinx.serialization.json.Json
+import java.io.File
+import java.util.*
 
 val json = Json { prettyPrint = true }
 
 fun main() {
-    val episode = "s01e04"
+    val episode = "s02e08"
     val subtitlesRomaji = parseSubtitles(fileName = "$episode-romaji.srt", origin = "RMJ")
     val subtitlesBadEn = parseSubtitles(fileName = "$episode-bad-en.srt", origin = "BAD-EN")
     val subtitlesRomajiBadEn = subtitlesRomaji.combineMatching(subtitlesBadEn)

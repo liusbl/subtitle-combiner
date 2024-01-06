@@ -1,3 +1,5 @@
+package subtitles
+
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import java.io.File

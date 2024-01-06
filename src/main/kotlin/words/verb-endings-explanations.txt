@@ -1,0 +1,133 @@
+Informal Present (Dictionary Form):
+殺す (korosu) - To kill
+彼は人を殺すことはできない。 (Kare wa hito o korosu koto wa dekinai) - He cannot kill a person.
+
+Formal Present (~masu Form):
+殺します (koroshimasu) - I kill, You kill, We kill, They kill (polite form)
+狩猟者は動物を殺します。 (Shuryousha wa doubutsu o koroshimasu) - Hunters kill animals.
+
+Informal Past (~ta Form):
+殺した (koroshita) - Killed
+彼は昨日、敵を殺した。 (Kare wa kinou, teki o koroshita) - He killed the enemy yesterday.
+
+Formal Past:
+殺しました (koroshimashita) - Killed (polite form)
+その事件で多くの人が殺されました。 (Sono jiken de ooku no hito ga korosaremashita) - Many people were killed in that incident.
+
+Informal Negative (~nai Form):
+殺さない (korosanai) - Do not kill
+人は他の生物を殺さないべきだ。 (Hito wa hoka no seibutsu o korosanai beki da) - People should not kill other creatures.
+
+Formal Negative:
+殺しません (koroshimasen) - Do not kill (polite form)
+法律に従って、彼を殺しません。 (Houritsu ni shitagatte, kare o koroshimasen) - According to the law, we will not kill him.
+
+Informal Past Negative (~nakatta Form):
+殺さなかった (korosanakatta) - Did not kill
+彼は無害であることが判明し、殺さなかった。 (Kare wa mugai de aru koto ga hanmei shi, korosanakatta) - It was found that he was innocent, so he was not killed.
+
+Formal Past Negative:
+殺しませんでした (koroshimasen deshita) - Did not kill (polite form)
+その時、私はまだ殺しませんでした。 (Sono toki, watashi wa mada koroshimasen deshita) - I did not kill at that time.
+
+Continuous:
+殺している (koroshiteiru) - Is/are killing
+犯罪者は無害な人々を殺している。 (Hanzaisya wa mugai na hitobito o koroshiteiru) - Criminals are killing innocent people.
+
+Te-Form:
+殺して (koroshite) - Killing
+彼は無慈悲に動物を殺しています。 (Kare wa mujihi ni doubutsu o koroshiteimasu) - He is mercilessly killing animals.
+
+Masu Stem:
+殺し (koroshi) - Stem form for conjugation
+人間同士の戦争を止めるために何かできることはないか、考えなければならない。 (Ningen doutoshi no sensou o tomeru tame ni nanika dekiru koto wa nai ka, kangaenakereba naranai) - We must think if there's anything we can do to stop human wars.
+
+Passive:
+殺される (korosareru) - To be killed
+その村の人々は敵によって殺されました。 (Sono mura no hitobito wa teki ni yotte korosaremashita) - The villagers were killed by the enemy.
+
+Causative:
+殺させる (korosaseru) - To make/let someone kill
+彼は無害な生物を殺させないでください。 (Kare wa mugai na seibutsu o korosasenai de kudasai) - Please do not let him kill innocent creatures.
+
+Causative-Passive:
+殺させられる (korosaserareru) - To be made/let to kill (by someone)
+彼は無害な生物を殺させられました。 (Kare wa mugai na seibutsu o korosaseraremashita) - He was made to kill innocent creatures.
+
+Conditional:
+殺せば (koroseba) - If (conditional form)
+もし攻撃されたら、自衛する権利があります。 (Moshi kougeki sare tara, jiei suru kenri ga arimasu) - If attacked, you have the right to self-defense.
+
+Volitional:
+殺そう (korosou) - Let's kill
+虫が家に入ってきたら、殺そう。 (Mushi ga ie ni haittekimattara, korosou) - If a bug comes into the house, let's kill it.
+
+Potential:
+殺せる (koroseru) - Can kill
+このナイフは危険な動物を殺せる。 (Kono naifu wa kiken na doubutsu o koroseru) - This knife can kill dangerous animals.
+
+Imperative (Command):
+殺せ (korose) - Kill (informal command)
+その獣が危険だ、殺せ！ (Sono kemono ga kiken da, korose!) - That beast is dangerous, kill it!
+
+--------------------
+shindemo (死んでも)
+
+Grammatical Structure: This is a combination of "shinde" (the te-form of "shinu," meaning "to die") and "mo" (も), which means "even if."
+Translation: "Even if (I/you/he/she/they) die."
+Example: 雨が降っても、私は死んでもこの場所を離れない。 (Ame ga futtemo, watashi wa shindemo kono basho o hanarenai.) - "Even if it rains, I won't leave this place."
+shindemoī (死んでもいい)
+
+Grammatical Structure: This is a combination of "shinde" (the te-form of "shinu," meaning "to die") and "ii" (いい), which means "good" or "okay."
+Translation: "It's okay to die" or "You/they can die."
+Example: その病気は治らないと言われたら、私は死んでもいいと思う。 (Sono byouki wa naoranai to iwaretara, watashi wa shindemo ii to omou.) - "If I'm told that the illness cannot be cured, I think it's okay to die."
+shinitakunakya (死にたくなきゃ)
+
+Grammatical Structure: This is a combination of "shinu" (the dictionary form of "shinu," meaning "to die") and "takunakya" (たくなきゃ), which is a contraction of "takunai" (たくない) meaning "don't want to."
+Translation: "If (you/he/she/they) don't want to die" or "You/they must not want to die."
+Example: この世界でまだやりたいことがあるなら、死にたくなきゃ頑張らないと。 (Kono sekai de mada yaritai koto ga aru nara, shinitakunakya ganbaranai to.) - "If you still have things you want to do in this world, you mustn't want to die; you have to persevere."
+shina (死な)
+
+Grammatical Structure: This is the imperative (command) form of "shinu," meaning "to die."
+Translation: "Die!" (command)
+Example: その怪物は危険だ、早く逃げろ！ (Sono kaibutsu wa kiken da, hayaku nigero!) - "That monster is dangerous; run away quickly!"
+shinikata (死に方)
+
+Grammatical Structure: This is a compound word consisting of "shinu" (the dictionary form of "shinu," meaning "to die") and "kata" (方), which means "way" or "method."
+Translation: "Way of dying" or "How to die."
+Example: 死に方を考えるより、生きる方法を見つけた方がいい。 (Shinikata o kangaeru yori, ikiru houhou o mitsuketa hou ga ii.) - "Rather than thinking about how to die, it's better to find a way to live."
+shinanē (死なねえ)
+
+Grammatical Structure: This is a colloquial form of "shinai" (死ない), the negative present tense of "shinu," with the colloquial suffix "ne" (ね).
+Translation: "Not dying" or "Won't die."
+Example: こんな些細なことで死なねえよ！ (Konna sasai na koto de shinanee yo!) - "I won't die from such a trivial thing!"
+shinikaketa (死にかけた)
+
+Grammatical Structure: This is the past tense of "shinu" (the dictionary form), combined with "kaketa" (かけた), which means "in the midst of."
+Translation: "Was in the midst of dying" or "Almost died."
+Example: 交通事故で彼は死にかけたが、奇跡的に助かった。 (Koutsuu jiko de kare wa shinikaketa ga, kisekiteki ni tasukatta.) - "He was in the midst of dying in a car accident but miraculously survived."
+shinanaide (死なないで)
+
+Grammatical Structure: This is the te-form of "shinu" (the dictionary form), followed by "naide" (ないで), which is the negative request form.
+Translation: "Don't die."
+Example: どうか、死なないでください。 (Douka, shinanaide kudasai.) - "Please, don't die."
+shinazu (死なず)
+
+Grammatical Structure: This is the negative present tense of "shinu" (the dictionary form) in its classical form.
+Translation: "Not dying" or "Doesn't die."
+Example: 彼は不死の力を持っていると言われている。 (Kare wa fushi no chikara o motteiru to iwareteiru.) - "He is said to possess the power of immortality."
+shinuki (死ぬ気)
+
+Grammatical Structure: This is a combination of "shinu" (the dictionary form) and "ki" (気), which means "intent" or "determination."
+Translation: "Intent to die" or "Determination to die."
+Example: 彼女は死ぬ気で最後まで戦った。 (Kanojo wa shinuki de saigo made tatakatta.) - "She fought to the end with the determination to die."
+shindadarou (死んだろう)
+
+Grammatical Structure: This is a combination of "shinda" (the past tense of "shinu") and "darou" (だろう), which expresses uncertainty or speculation.
+Translation: "Probably died" or "Must have died."
+Example: 彼は行方不明になってから何週間も経っている。もう死んだろうか。 (Kare wa yukuefumei ni natte kara nanishuukan mo tatteiru. Mou shindarou ka.) - "It's been several weeks since he went missing. He must have died by now, right?"
+shinitaku (死にたく)
+
+Grammatical Structure: This is a combination of "shinu" (the dictionary form) and "taku" (たく), which is the desire or intention form.
+Translation: "Want to die."
+Example: 彼は辛い状況から逃げたくて死にたくなることがある。 (Kare wa tsurai joukyou kara nigetakute shinitakunaru koto ga aru.) - "He sometimes wants to die because he wants to escape from a difficult situation."
