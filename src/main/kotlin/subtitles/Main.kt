@@ -7,7 +7,7 @@ import java.util.*
 val json = Json { prettyPrint = true }
 
 fun main() {
-    val episode = "s02e08"
+    val episode = "s02e09"
     val subtitlesRomaji = parseSubtitles(fileName = "$episode-romaji.srt", origin = "RMJ")
     val subtitlesBadEn = parseSubtitles(fileName = "$episode-bad-en.srt", origin = "BAD-EN")
     val subtitlesRomajiBadEn = subtitlesRomaji.combineMatching(subtitlesBadEn)
