@@ -23,12 +23,12 @@ fun adjustWordCountList() {
 
     val lines = groups.map { (root, words) -> "$root: ${words.joinToString(", \n${" ".repeat(rootLength + 2)}")}" }
 
-    File("src/main/kotlin/words/s01-succ.txt").writeText(lines.joinToString("\n"))
+    File("src/main/kotlin/words/s01-all-words-grouped.txt").writeText(lines.joinToString("\n"))
 }
 
 data class Word(
     val text: String,
-    val count: Int
+        val count: Int
 ) {
     override fun toString(): String {
         return "${text} [${count}]"
