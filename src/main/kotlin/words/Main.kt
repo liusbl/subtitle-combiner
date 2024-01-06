@@ -51,6 +51,7 @@ fun createWordCountList() {
                 .replace("'", "")
                 .replace("”", "")
                 .replace("“", "")
+                .replace("\"", "")
                 .toLowerCase(Locale.ENGLISH)
             word
         }
