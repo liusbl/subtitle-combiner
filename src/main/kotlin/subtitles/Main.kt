@@ -1,19 +1,25 @@
 package subtitles
 
 import kotlinx.serialization.json.Json
-import java.io.File
-import java.util.*
 
 val json = Json { prettyPrint = true }
 
 fun main() {
-    val episode = "s02e09"
+    val episode = "s03e01"
+
+    // Merged all japanese texts into one line so that it's better recognized in Google Translate
+    val subtitlesJp = parseSubtitles(fileName = "$episode-jp.srt", origin = "JP")
+        .map { subtitle ->
+            val subtitleText = subtitle.textList[0]
+            subtitle.copy(textList = listOf(subtitleText.copy(text = subtitleText.text.replace("\n", ""))))
+        }
+    subtitlesJp.printToFile("$episode-jp.srt")
+
     val subtitlesRomaji = parseSubtitles(fileName = "$episode-romaji.srt", origin = "RMJ")
     val subtitlesBadEn = parseSubtitles(fileName = "$episode-bad-en.srt", origin = "BAD-EN")
     val subtitlesRomajiBadEn = subtitlesRomaji.combineMatching(subtitlesBadEn)
     subtitlesRomajiBadEn.printToFile("$episode-romaji-bad-en.srt")
 
-    val subtitlesJp = parseSubtitles(fileName = "$episode-jp.srt", origin = "JP")
     val subtitlesRomajiBadEnJp = subtitlesRomajiBadEn.combineMatching(subtitlesJp)
     subtitlesRomajiBadEnJp.printToFile("$episode-romaji-bad-en-jp.srt")
 
