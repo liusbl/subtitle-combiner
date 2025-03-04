@@ -16,6 +16,9 @@ fun main() {
     "$episode-jp-single-lines.srt".let { fileName ->
         if (!fileExists(fileName)) {
             subtitlesJp.printToFile(fileName)
+            println("Japanese subtitles merged into single lines.")
+            println("Go translate and come back with -romaji and -bad-en files.")
+            return
         }
     }
 
