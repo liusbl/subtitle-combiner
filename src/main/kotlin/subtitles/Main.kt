@@ -5,17 +5,17 @@ import kotlinx.serialization.json.Json
 val json = Json { prettyPrint = true }
 
 fun main() {
-    val episode = "s03e01"
+    val episode = "sousou-no-frieren-s01e01"
 
-    // Merged all japanese texts into one line so that it's better recognized in Google Translate
-    val subtitlesJp = parseSubtitles(fileName = "$episode-jp.srt", origin = "JP")
-        .map { subtitle ->
-            val subtitleText = subtitle.textList[0]
-            subtitle.copy(textList = listOf(subtitleText.copy(text = subtitleText.text.replace("\n", ""))))
-        }
-    "$episode-jp-single-lines.srt".let { fileName ->
-        if (!fileExists(fileName)) {
-            subtitlesJp.printToFile(fileName)
+    val subtitlesJp = "$episode-jp-single-lines.srt".let { fileName ->
+        if (fileExists(fileName)) {
+            parseSubtitles(fileName = fileName, origin = "JP")
+        } else {
+            parseSubtitles(fileName = "$episode-jp.srt", origin = "JP")
+                .map { subtitle ->
+                    val subtitleText = subtitle.textList[0]
+                    subtitle.copy(textList = listOf(subtitleText.copy(text = subtitleText.text.replace("\n", ""))))
+                }.printToFile(fileName)
             println("Japanese subtitles merged into single lines.")
             println("Go translate and come back with -romaji and -bad-en files.")
             return
