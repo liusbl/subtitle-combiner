@@ -13,7 +13,11 @@ fun main() {
             val subtitleText = subtitle.textList[0]
             subtitle.copy(textList = listOf(subtitleText.copy(text = subtitleText.text.replace("\n", ""))))
         }
-    subtitlesJp.printToFile("$episode-jp.srt")
+    "$episode-jp-single-lines.srt".let { fileName ->
+        if (!fileExists(fileName)) {
+            subtitlesJp.printToFile(fileName)
+        }
+    }
 
     val subtitlesRomaji = parseSubtitles(fileName = "$episode-romaji.srt", origin = "RMJ")
     val subtitlesBadEn = parseSubtitles(fileName = "$episode-bad-en.srt", origin = "BAD-EN")

@@ -17,6 +17,8 @@ data class SubtitleText(
     @SerialName("text") val text: String
 )
 
+fun fileExists(fileName: String): Boolean = File("src/main/kotlin/subtitles/$fileName").exists()
+
 fun List<Subtitle>.printToFile(fileName: String) {
     File("src/main/kotlin/subtitles/$fileName").writeText(toPrintableText())
 }
