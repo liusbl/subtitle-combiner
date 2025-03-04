@@ -17,10 +17,12 @@ data class SubtitleText(
     @SerialName("text") val text: String
 )
 
-fun fileExists(fileName: String): Boolean = File("src/main/kotlin/subtitles/$fileName").exists()
+private val subtitlesPath = "src${File.separatorChar}main${File.separatorChar}kotlin${File.separatorChar}subtitles${File.separatorChar}"
+
+fun fileExists(fileName: String): Boolean = File("$subtitlesPath$fileName").exists()
 
 fun List<Subtitle>.printToFile(fileName: String) {
-    File("src/main/kotlin/subtitles/$fileName").writeText(toPrintableText())
+    File("$subtitlesPath$fileName").writeText(toPrintableText())
 }
 
 fun List<Subtitle>.toPrintableText(): String =
@@ -34,7 +36,7 @@ fun Subtitle.toDisplayString(): String {
 }
 
 fun parseSubtitles(fileName: String, origin: String): List<Subtitle> {
-    val lines = File("src/main/kotlin/subtitles/$fileName").readLines()
+    val lines = File("$subtitlesPath$fileName").readLines()
     val chunks = lines.drop(1)
         .foldIndexed(listOf(listOf<String>())) { index, acc, next ->
             if (next.contains("-->")) {
