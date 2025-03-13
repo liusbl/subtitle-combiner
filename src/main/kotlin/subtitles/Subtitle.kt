@@ -17,19 +17,27 @@ data class SubtitleText(
     @SerialName("text") val text: String
 )
 
-private val subtitlesPath = "src${File.separatorChar}main${File.separatorChar}kotlin${File.separatorChar}subtitles${File.separatorChar}"
+private val subtitlesPath =
+    "src${File.separatorChar}main${File.separatorChar}kotlin${File.separatorChar}subtitles${File.separatorChar}"
 
 fun fileExists(fileName: String): Boolean = File("$subtitlesPath$fileName").exists()
 
-fun List<Subtitle>.printToFile(fileName: String) {
-    File("$subtitlesPath$fileName").writeText(toPrintableText())
+fun List<Subtitle>.printToFile(fileName: String, appendOrigin: Boolean = true) {
+    File("$subtitlesPath$fileName").writeText(toPrintableText(appendOrigin))
 }
 
-fun List<Subtitle>.toPrintableText(): String =
-    joinToString(separator = "\n\n", transform = Subtitle::toDisplayString)
+fun List<Subtitle>.toPrintableText(appendOrigin: Boolean): String =
+    joinToString(separator = "\n\n") { it.toDisplayString(appendOrigin) }
 
-fun Subtitle.toDisplayString(): String {
-    val text = textList.joinToString(separator = "\n") { subtitle -> "[${subtitle.origin}] ${subtitle.text}" }
+fun Subtitle.toDisplayString(appendOrigin: Boolean): String {
+    val text = textList.joinToString(separator = "\n") { subtitle ->
+        val originText = if (appendOrigin) {
+            "[${subtitle.origin}] "
+        } else {
+            ""
+        }
+        "$originText${subtitle.text}"
+    }
     return "${number}\n" +
             "${duration.text}\n" +
             text

@@ -4,7 +4,7 @@ package subtitles
  * Get Japanese and English subtitles from https://kitsunekko.net/dirlist.php?dir=subtitles%2Fjapanese%2F
  */
 fun main() {
-    val episode = "sousou-no-frieren-s01e01"
+    val episode = "sousou-no-frieren-s01e02"
 
     val subtitlesJp = "$episode-jp-single-lines.srt".let { fileName ->
         if (fileExists(fileName)) {
@@ -14,7 +14,7 @@ fun main() {
                 .map { subtitle ->
                     val subtitleText = subtitle.textList[0]
                     subtitle.copy(textList = listOf(subtitleText.copy(text = subtitleText.text.replace("\n", ""))))
-                }.printToFile(fileName)
+                }.printToFile(fileName, appendOrigin = false)
             println("Japanese subtitles merged into single lines.")
             println("Go translate and come back with -romaji and -bad-en files.")
             return
@@ -29,6 +29,13 @@ fun main() {
     val subtitlesRomajiBadEnJp = subtitlesRomajiBadEn.combineMatching(subtitlesJp)
     subtitlesRomajiBadEnJp.printToFile("$episode-romaji-bad-en-jp.srt")
 
+    // TODO:
+    // If original English subtitles have Font information, try to remove it
+    // Example in Sousou no Frieren
+    // 2
+    // 00:01:30,820 --> 00:01:38,740
+    // <font face="Roboto Medium" size="26">Long-range magic is a combination of
+    // three key factors essential to mages.</font>
     val subtitlesOgEn = parseSubtitles(fileName = "$episode-og-en.srt", origin = "OG-EN")
 
     val subtitlesRomajiOgEn = subtitlesRomaji.combineNonMatching(subtitlesOgEn)
@@ -51,5 +58,5 @@ fun List<Subtitle>.combineMatching(list: List<Subtitle>): List<Subtitle> {
     }
 }
 
-fun List<Subtitle>.combineNonMatching(list: List<Subtitle>): List<Subtitle> =
+fun List<Subtitle>. combineNonMatching(list: List<Subtitle>): List<Subtitle> =
     (this + list).sortedBy { it.duration.startTimeMillis }
