@@ -1,5 +1,8 @@
 package subtitles
 
+/**
+ * Get Japanese and English subtitles from https://kitsunekko.net/dirlist.php?dir=subtitles%2Fjapanese%2F
+ */
 fun main() {
     val episode = "sousou-no-frieren-s01e01"
 
