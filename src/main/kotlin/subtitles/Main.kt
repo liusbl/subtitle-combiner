@@ -1,9 +1,5 @@
 package subtitles
 
-import kotlinx.serialization.json.Json
-
-val json = Json { prettyPrint = true }
-
 fun main() {
     val episode = "sousou-no-frieren-s01e01"
 
