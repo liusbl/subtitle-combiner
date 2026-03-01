@@ -17,7 +17,7 @@ data class SubtitleText(
     @SerialName("text") val text: String
 )
 
-private val subtitlesPath =
+val subtitlesPath =
     "src${File.separatorChar}main${File.separatorChar}kotlin${File.separatorChar}subtitles${File.separatorChar}"
 
 fun fileExists(fileName: String): Boolean = File("$subtitlesPath$fileName").exists()
