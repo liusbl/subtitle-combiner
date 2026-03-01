@@ -86,3 +86,9 @@ fun List<List<String>>.addValue(value: String): List<List<String>> {
     val appendedLastList = lastList + listOf(value)
     return this.dropLast(1) + listOf(appendedLastList)
 }
+
+fun String.addCharAtIndex(index: Int, char: Char): String {
+    val str = this
+    require(index in 0..str.length) { "Index out of bounds" }
+    return str.substring(0, index) + char + str.substring(index)
+}

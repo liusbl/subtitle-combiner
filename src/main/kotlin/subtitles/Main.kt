@@ -6,7 +6,7 @@ import java.io.File
  * Get Japanese and English subtitles from https://kitsunekko.net/dirlist.php?dir=subtitles%2Fjapanese%2F
  */
 fun main() {
-    val episode = "e04"
+    val episode = "e07"
 
     // If the translated romaji file was created via a GoogleTranslate process, by adding "|" separator characters,
     //  then remove those separators and fix the formatting.
@@ -32,7 +32,12 @@ fun main() {
                 .run {
                     // TODO add commas if they are missing
                     if (this.contains("-->")) {
-                        this
+                        if (!this.contains(',')) {
+                            this.addCharAtIndex(8, ',')
+                                .addCharAtIndex(25, ',')
+                        } else {
+                            this
+                        }
                     } else {
                         this
                     }
